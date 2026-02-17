@@ -20,18 +20,25 @@
 
     <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 mb-8">
       <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4">Task Status Distribution</h3>
-      <div class="relative h-64">
-        <!-- Simple CSS Bar Chart as placeholder/fallback or simple implementation -->
-        <div class="flex items-end justify-center h-full space-x-12">
-            <div class="flex flex-col items-center">
-                <div class="w-16 bg-yellow-400 rounded-t" :style="{ height: `${(pendingTasks / totalTasks) * 100}%` }"></div>
-                <span class="mt-2 text-sm text-gray-600 dark:text-gray-400">Pending</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <div class="w-16 bg-green-500 rounded-t" :style="{ height: `${(completedTasks / totalTasks) * 100}%` }"></div>
-                <span class="mt-2 text-sm text-gray-600 dark:text-gray-400">Completed</span>
-            </div>
-        </div>
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 flex justify-center items-center h-64">
+        <ClientOnly>
+            <TaskDistributionChart :pending-count="pendingTasks" :completed-count="completedTasks" />
+            <template #fallback>
+                <div class="animate-pulse flex space-x-4">
+                    <div class="rounded-full bg-gray-200 h-10 w-10"></div>
+                    <div class="flex-1 space-y-6 py-1">
+                        <div class="h-2 bg-gray-200 rounded"></div>
+                        <div class="space-y-3">
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="h-2 bg-gray-200 rounded col-span-2"></div>
+                                <div class="h-2 bg-gray-200 rounded col-span-1"></div>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </ClientOnly>
       </div>
     </div>
     
