@@ -39,8 +39,8 @@ const password = ref('')
 const handleLogin = async () => {
   try {
     await login({ email: email.value, password: password.value })
-  } catch (error) {
-    alert('Login failed')
+  } catch (error: any) {
+    alert(error.message || 'Login failed')
   }
 }
 </script>

@@ -8,5 +8,6 @@ export const db = {
             priority: 'medium',
             createdAt: new Date().toISOString()
         }
-    ]
+    ],
+    users: [] as any[]
 }

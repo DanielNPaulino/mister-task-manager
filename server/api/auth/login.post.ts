@@ -1,3 +1,5 @@
+import { db } from '~/server/db'
+
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
@@ -9,20 +11,17 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    // Mock authentication logic
-    // In a real app, you would check against a database
-    if (body.password === 'password') { // Simple mock password check
-        const token = 'mock-jwt-token-' + Date.now()
-        const user = {
-            id: 1,
-            email: body.email,
-            name: 'Mock User'
-        }
+    // Verify credentials
+    // @ts-ignore
+    const user = db.users.find((u: any) => u.email === body.email)
 
-        // Set cookie (optional here if handled by client, but good practice to set httpOnly cookie)
-        // setCookie(event, 'auth_token', token, { httpOnly: true })
+    if (user && user.password === body.password) {
+        const token = 'mock-jwt-token-' + user.id
 
-        return { token, user }
+        // Return user without password
+        const { password, ...userWithoutPassword } = user
+
+        return { token, user: userWithoutPassword }
     } else {
         throw createError({
             statusCode: 401,
