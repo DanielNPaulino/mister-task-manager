@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col space-y-4 mb-6">
     <!-- Status Filter -->
-    <div class="flex space-x-2">
+    <div class="flex flex-wrap gap-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300 self-center mr-2">Status:</span>
         <button 
         @click="$emit('update:status', 'all')"
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Priority Filter -->
-    <div class="flex space-x-2">
+    <div class="flex flex-wrap gap-2">
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300 self-center mr-2">Priority:</span>
         <button 
         @click="$emit('update:priority', 'all')"

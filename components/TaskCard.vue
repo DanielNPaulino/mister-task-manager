@@ -17,7 +17,7 @@
       </p>
       <div class="mt-4 flex justify-between items-center">
         <span class="text-xs text-gray-400 capitalize">Priority: {{ task.priority }}</span>
-        <div class="flex space-x-3">
+        <div class="flex flex-wrap gap-3 mt-2 sm:mt-0">
             <button 
             @click="toggleStatus" 
             class="text-sm font-medium hover:underline focus:outline-none"
