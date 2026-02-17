@@ -1,4 +1,4 @@
-import { db } from '../../db'
+import { db } from '~/server/db'
 
 export default defineEventHandler(async (event) => {
     const id = parseInt(event.context.params?.id as string)
